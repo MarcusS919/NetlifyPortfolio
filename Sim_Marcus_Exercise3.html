@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Exercise 3</title>
+
+  <style>
+
+    #canvas {
+      
+      background-color: #000;
+      width: 600px;
+      height: 300px;
+      border: 3px solid red;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <h1>Exercise 3</h1>
+ <p> Mouse over the canvas to randomize the ball's colour</p>
+
+  <canvas id="canvas" width="600" height="300">
+    Alternate content here, for accessibility.
+  </canvas>
+
+<button id="enlarge_button">Enlarge</button>
+<button id="shrink_button">Shrink</button>
+
+  <script>
+    
+    // Initialize the canvas
+    var canvas = document.getElementById("canvas");
+    if (canvas.getContext('2d')) {
+      var context = canvas.getContext("2d");
+    }
+    var rad = 20;
+    var red = 199;
+    var green = 199;
+    var blue = 199;
+
+function Circle(xPos_, yPos_, xDelta_, yDelta_){
+	this.xPos = xPos_;
+	this.yPos = yPos_;
+	this.xDelta = xDelta_;
+	this.yDelta = yDelta_;
+
+	this.Draw = function(){
+		context.beginPath();
+		context.fillStyle = "rgb("+red+","+green+","+blue+")";
+		context.arc(this.xPos, this.yPos, rad, 0, 2 * Math.PI);
+		context.fill();
+	}
+
+	this.Update = function(){
+		this.yPos += this.yDelta;
+     		this.xPos += this.xDelta;
+
+		if (this.yPos < rad) {
+        	this.yDelta = 2; // change direction
+      		}
+      		else if (this.yPos > (canvas.height - rad)) {
+        	this.yDelta *= -1;  // change direction
+      		}
+
+		if (this.xPos < rad) {
+        	this.xDelta = 2; // change direction
+      		}
+      		else if (this.xPos > (canvas.width - rad)) {
+        	this.xDelta *= -1;  // change direction
+      		}
+	}
+}
+
+//add function to enlarge button
+	function enlarge(event){
+	rad += 10;
+	}
+	var my_enlarge_button = document.getElementById("enlarge_button");
+	my_enlarge_button.addEventListener("click", enlarge);
+
+//add function to shrink button
+	function shrink(event){
+	rad -= 10;
+	}
+	var my_shrink_button = document.getElementById("shrink_button");
+	my_shrink_button.addEventListener("click", shrink);
+
+      // change balls's colour when mouseover
+  function changeColourIfMouseover(event)
+  {
+        red = Math.floor(Math.random() * 255);
+        green = Math.floor(Math.random() * 255);
+        blue = Math.floor(Math.random() * 255);
+  }
+
+  canvas.addEventListener("mouseover", changeColourIfMouseover);
+
+
+var cir = new Circle(22,150,2,2);
+    function myFrame(timestamp) {
+      // Clear the previous drawing
+      context.clearRect(0,0,canvas.width, canvas.height);
+	
+      // Draw a circle
+      
+      cir.Draw();
+      cir.Update();
+	
+
+      // Reanimate again
+      window.requestAnimationFrame(myFrame);
+    }
+
+
+    // Start the animation
+    myFrame();
+
+  </script>
+
+</body>
+</html>
