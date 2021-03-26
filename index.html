@@ -2,123 +2,45 @@
 <html lang="en">
 
 <head>
-  <title>Marcus Sim's Portfolio Website</title>
-
-  <style>
-
-    #canvas {
-      
-      background-color: #000;
-      width: 600px;
-      height: 300px;
-      border: 3px solid red;
-    }
-
-  </style>
-
+<title>Marcus Sim's Portfolio</title>
 </head>
-<body>
 
-  <h1>Exercise 3</h1>
- <p> Mouse over the canvas to randomize the ball's colour</p>
+<body style="background-color:grey;">
+<h1>About</h1>
+<p>"Hello! My name is Marcus Sim and I am a student at Humber College for the advanced diploma program of Game Programming."</p>
+<img src="main.jpg" alt="Cookie picture" title="Chocolate Chip Cookie">
 
-  <canvas id="canvas" width="600" height="300">
-    Alternate content here, for accessibility.
-  </canvas>
+<hr>
 
-<button id="enlarge_button">Enlarge</button>
-<button id="shrink_button">Shrink</button>
+<h2>Ingrediants</h2>
+<pre>
+3/4 cup butter 
+1 1/2 cups packed brown sugar 
+2 tablespoons water 
+2 cups semisweet chocolate chips 
+2 eggs 
+2 1/2 cups all-purpose flour 
+1 1/4 teaspoons baking soda 
+1/2 teaspoon salt 
+36 chocolate mint wafer candies
+</pre>
 
-  <script>
-    
-    // Initialize the canvas
-    var canvas = document.getElementById("canvas");
-    if (canvas.getContext('2d')) {
-      var context = canvas.getContext("2d");
-    }
-    var rad = 20;
-    var red = 199;
-    var green = 199;
-    var blue = 199;
+<hr>
 
-function Circle(xPos_, yPos_, xDelta_, yDelta_){
-	this.xPos = xPos_;
-	this.yPos = yPos_;
-	this.xDelta = xDelta_;
-	this.yDelta = yDelta_;
+<h2>Instructions</h2>
+<p>In a large pan over low heat, cook butter, sugar and water until butter is melted. Add chocolate chips and stir until partially melted. Remove from heat and continue to stir until chocolate is completely melted. Pour into a large bowl and let stand 10 minutes to cool off slightly.
+<br><br>
+At high speed, beat in eggs, one at a time into chocolate mixture. Reduce speed to low and add dry ingredients, beating until blended. Chill dough about 1 hour.
+<br><br>
+Preheat oven to 350 degrees F (175 degrees C).
+Roll dough into balls and place on ungreased cookie sheet about 2 inches apart. Bake 8-10 minutes. While cookies are baking unwrap mints and divide each in half. When cookies are brought out of the oven, put 1/2 mint on top of each cookie. Let the mint sit for up to 5 minutes until melted, then spread the mint on top of the cookie. Eat and enjoy!
+</p>
 
-	this.Draw = function(){
-		context.beginPath();
-		context.fillStyle = "rgb("+red+","+green+","+blue+")";
-		context.arc(this.xPos, this.yPos, rad, 0, 2 * Math.PI);
-		context.fill();
-	}
-
-	this.Update = function(){
-		this.yPos += this.yDelta;
-     		this.xPos += this.xDelta;
-
-		if (this.yPos < rad) {
-        	this.yDelta = 2; // change direction
-      		}
-      		else if (this.yPos > (canvas.height - rad)) {
-        	this.yDelta *= -1;  // change direction
-      		}
-
-		if (this.xPos < rad) {
-        	this.xDelta = 2; // change direction
-      		}
-      		else if (this.xPos > (canvas.width - rad)) {
-        	this.xDelta *= -1;  // change direction
-      		}
-	}
-}
-
-//add function to enlarge button
-	function enlarge(event){
-	rad += 10;
-	}
-	var my_enlarge_button = document.getElementById("enlarge_button");
-	my_enlarge_button.addEventListener("click", enlarge);
-
-//add function to shrink button
-	function shrink(event){
-	rad -= 10;
-	}
-	var my_shrink_button = document.getElementById("shrink_button");
-	my_shrink_button.addEventListener("click", shrink);
-
-      // change balls's colour when mouseover
-  function changeColourIfMouseover(event)
-  {
-        red = Math.floor(Math.random() * 255);
-        green = Math.floor(Math.random() * 255);
-        blue = Math.floor(Math.random() * 255);
-  }
-
-  canvas.addEventListener("mouseover", changeColourIfMouseover);
-
-
-var cir = new Circle(22,150,2,2);
-    function myFrame(timestamp) {
-      // Clear the previous drawing
-      context.clearRect(0,0,canvas.width, canvas.height);
-	
-      // Draw a circle
-      
-      cir.Draw();
-      cir.Update();
-	
-
-      // Reanimate again
-      window.requestAnimationFrame(myFrame);
-    }
-
-
-    // Start the animation
-    myFrame();
-
-  </script>
+<a href="http://www.humber.ca/" target="_blank" title="Go to humber.ca"> 
+<mark style="font-size:25px;">Humber Website</mark> 
+</a>
 
 </body>
+
+
 </html>
