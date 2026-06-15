@@ -1,56 +1,222 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <title>Marcus Sim's Portfolio</title>
+<meta charset="UTF-8">
+<title>Graduation Application</title>
 
-    <style>
-        .navbar {
-            padding: 25px;
-            background-color: #000000;
-            overflow: hidden;
-        }
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
 
-            .navbar a {
-                float: none;
-                color: #FFFFFF;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-            }
+  /* HEADER */
+  .header {
+    background-color: #4b0082;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+  }
 
-                .navbar a:hover {
-                    background-color: #ddd;
-                    color: black;
-                }
-    </style>
+  .logo {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .user-menu {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .user-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+    width: 150px;
+    display: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  .dropdown div {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .dropdown div:hover {
+    background-color: #eee;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  /* Main container */
+  .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+  }
+
+  h2 {
+    margin-top: 0;
+    font-weight: normal;
+  }
+
+  .section {
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .field {
+    font-size: 14px;
+  }
+
+  .label {
+    color: #666;
+    font-size: 12px;
+  }
+
+  .value {
+    font-weight: Normal;
+  }
+
+  @media (max-width: 800px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
 </head>
 
+<body>
 
-<body style="background-color:#f0f0f0;">
-    <header>
+<!-- HEADER -->
 
-        <nav>
-            <ul class="navbar">
-               <a href="index.html">About Me</a>
-                <a href="projects.html">Projects</a>
-                <a href="contact.html">Contact Info</a>
-                <a href="/Resume.pdf">Resume</a>
+<div class="header">
+  <div class="logo">LAURIER</div>
 
-            </ul>
-        </nav>
+  <div class="user-menu" onclick="toggleDropdown()">
+    <div class="user-name">
+      👤 Marcus Sim ⌄
+    </div>
 
-        <h1>About Me</h1>
-   	</header>
-    <img src="PFPimage.jpg" alt="Selfie of Marcus">
-<div style="font-size: 20px">
-	Hello! My name is Marcus Sim and I am a student at Humber College for the advanced diploma program of Game Programming.<br>
-	I have experience with creating games using both Unity Engine and Unreal Engine, I also have experience with creating websites like this one using HTML5 and JavaScript.<br>
-    I love playing video games and some of my favourite video games are Titanfall 2, Destiny 2, and Dishonored.<br>
+
+<div class="dropdown" id="dropdown">
+  <div onclick="alert('Profile clicked')">Profile</div>
+  <div onclick="logout()">Logout</div>
+</div>
+
+
+  </div>
+</div>
+
+<!-- Breadcrumb -->
+
+<div class="breadcrumb">
+  Convocation Portal
+</div>
+
+<!-- Main -->
+
+<div class="container">
+  <h2>Graduation Application</h2>
+
+  <div class="section">
+    <div class="grid">
+      <div class="field">
+        <div class="label">Name</div>
+        <div class="value">Marcus Sim</div>
+      </div>
+
+
+  <div class="field">
+    <div class="label">Application Number</div>
+    <div class="value">1</div>
+  </div>
+
+  <div class="field">
+    <div class="label">Request Date</div>
+    <div class="value">11/24/2025</div>
+  </div>
+
+  <div class="field">
+    <div class="label">Application Status</div>
+    <div class="value">Application Granted</div>
+  </div>
+</div>
+
+<div style="margin-top:20px;">
+  <div class="label">Application Status Date</div>
+  <div class="value">05/20/2026</div>
+</div>
+
+
+  </div>
+
+  <div class="section">
+    <h3 style="font-weight:normal;">Graduation Date</h3>
+
+
+<div class="grid">
+  <div class="field">
+    <div class="label">Term</div>
+    <div class="value">Spring 2026</div>
+  </div>
+
+  <div class="field">
+    <div class="label">Year</div>
+    <div class="value">2026-2027</div>
+  </div>
+</div>
+
+
+  </div>
 
 </div>
 
+<script>
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdown");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+
+  function logout() {
+    alert("Logged out (not really, just demo)");
+  }
+
+  // Close dropdown if clicked outside
+  window.onclick = function(e) {
+    if (!e.target.closest('.user-menu')) {
+      document.getElementById("dropdown").style.display = "none";
+    }
+  }
+</script>
+
 </body>
-
-
 </html>
